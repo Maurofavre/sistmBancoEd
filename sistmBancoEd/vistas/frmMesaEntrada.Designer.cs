@@ -36,10 +36,8 @@
             this.dgvCajas = new System.Windows.Forms.DataGridView();
             this.dgvAtencionCliente = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtClienteAtencionCl = new System.Windows.Forms.TextBox();
             this.txtClienteCajas = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,20 +50,25 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvIngreso = new System.Windows.Forms.DataGridView();
             this.Ingreso = new System.Windows.Forms.GroupBox();
+            this.btnAceptarClient = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtNombreClientes = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtDniClientes = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.CAJAS = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNombreCaja = new System.Windows.Forms.TextBox();
             this.btnAtender = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnAtenderAC = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnAceptarClient = new System.Windows.Forms.Button();
-            this.txtNombreCaja = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDniAtencion = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtClienteAtencion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCajas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtencionCliente)).BeginInit();
@@ -75,9 +78,10 @@
             this.Ingreso.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.CAJAS.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -145,10 +149,11 @@
             // 
             // dgvAtencionCliente
             // 
+            this.dgvAtencionCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAtencionCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAtencionCliente.Location = new System.Drawing.Point(6, 25);
+            this.dgvAtencionCliente.Location = new System.Drawing.Point(6, 75);
             this.dgvAtencionCliente.Name = "dgvAtencionCliente";
-            this.dgvAtencionCliente.Size = new System.Drawing.Size(166, 277);
+            this.dgvAtencionCliente.Size = new System.Drawing.Size(274, 182);
             this.dgvAtencionCliente.TabIndex = 3;
             // 
             // label3
@@ -160,13 +165,6 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "CAJAS";
             // 
-            // txtClienteAtencionCl
-            // 
-            this.txtClienteAtencionCl.Location = new System.Drawing.Point(178, 41);
-            this.txtClienteAtencionCl.Name = "txtClienteAtencionCl";
-            this.txtClienteAtencionCl.Size = new System.Drawing.Size(100, 20);
-            this.txtClienteAtencionCl.TabIndex = 6;
-            // 
             // txtClienteCajas
             // 
             this.txtClienteCajas.Location = new System.Drawing.Point(134, 37);
@@ -177,20 +175,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(164, 21);
+            this.label5.Location = new System.Drawing.Point(142, 21);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(23, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Dni";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(199, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "CLIENTE";
             // 
             // groupBox3
             // 
@@ -311,6 +300,16 @@
             this.Ingreso.TabStop = false;
             this.Ingreso.Text = "Ingreso";
             // 
+            // btnAceptarClient
+            // 
+            this.btnAceptarClient.Location = new System.Drawing.Point(99, 294);
+            this.btnAceptarClient.Name = "btnAceptarClient";
+            this.btnAceptarClient.Size = new System.Drawing.Size(79, 33);
+            this.btnAceptarClient.TabIndex = 15;
+            this.btnAceptarClient.Text = "Aceptar";
+            this.btnAceptarClient.UseVisualStyleBackColor = true;
+            this.btnAceptarClient.Click += new System.EventHandler(this.btnAceptarClient_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtNombreClientes);
@@ -369,74 +368,6 @@
             this.CAJAS.TabStop = false;
             this.CAJAS.Text = "CAJAS";
             // 
-            // btnAtender
-            // 
-            this.btnAtender.Location = new System.Drawing.Point(92, 13);
-            this.btnAtender.Name = "btnAtender";
-            this.btnAtender.Size = new System.Drawing.Size(79, 48);
-            this.btnAtender.TabIndex = 9;
-            this.btnAtender.Text = "Atender";
-            this.btnAtender.UseVisualStyleBackColor = true;
-            this.btnAtender.Click += new System.EventHandler(this.btnAtender_Click);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btnAtenderAC);
-            this.groupBox6.Controls.Add(this.label6);
-            this.groupBox6.Controls.Add(this.dgvAtencionCliente);
-            this.groupBox6.Controls.Add(this.txtClienteAtencionCl);
-            this.groupBox6.Location = new System.Drawing.Point(654, 216);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(285, 341);
-            this.groupBox6.TabIndex = 13;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "ATENCION AL CLIENTE";
-            // 
-            // btnAtenderAC
-            // 
-            this.btnAtenderAC.Location = new System.Drawing.Point(187, 83);
-            this.btnAtenderAC.Name = "btnAtenderAC";
-            this.btnAtenderAC.Size = new System.Drawing.Size(79, 48);
-            this.btnAtenderAC.TabIndex = 10;
-            this.btnAtenderAC.Text = "Atender";
-            this.btnAtenderAC.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::sistmBancoEd.Properties.Resources.logoBanco;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(30, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(252, 189);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnAceptarClient
-            // 
-            this.btnAceptarClient.Location = new System.Drawing.Point(99, 294);
-            this.btnAceptarClient.Name = "btnAceptarClient";
-            this.btnAceptarClient.Size = new System.Drawing.Size(79, 33);
-            this.btnAceptarClient.TabIndex = 15;
-            this.btnAceptarClient.Text = "Aceptar";
-            this.btnAceptarClient.UseVisualStyleBackColor = true;
-            this.btnAceptarClient.Click += new System.EventHandler(this.btnAceptarClient_Click);
-            // 
-            // txtNombreCaja
-            // 
-            this.txtNombreCaja.Location = new System.Drawing.Point(6, 37);
-            this.txtNombreCaja.Name = "txtNombreCaja";
-            this.txtNombreCaja.Size = new System.Drawing.Size(90, 20);
-            this.txtNombreCaja.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Cliente";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label1);
@@ -450,11 +381,114 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Atendiendo";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Cliente";
+            // 
+            // txtNombreCaja
+            // 
+            this.txtNombreCaja.Location = new System.Drawing.Point(6, 37);
+            this.txtNombreCaja.Name = "txtNombreCaja";
+            this.txtNombreCaja.Size = new System.Drawing.Size(90, 20);
+            this.txtNombreCaja.TabIndex = 10;
+            // 
+            // btnAtender
+            // 
+            this.btnAtender.Location = new System.Drawing.Point(92, 13);
+            this.btnAtender.Name = "btnAtender";
+            this.btnAtender.Size = new System.Drawing.Size(79, 48);
+            this.btnAtender.TabIndex = 9;
+            this.btnAtender.Text = "Atender";
+            this.btnAtender.UseVisualStyleBackColor = true;
+            this.btnAtender.Click += new System.EventHandler(this.btnAtender_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.groupBox5);
+            this.groupBox6.Controls.Add(this.btnAtenderAC);
+            this.groupBox6.Controls.Add(this.dgvAtencionCliente);
+            this.groupBox6.Location = new System.Drawing.Point(654, 216);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(283, 341);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "ATENCION AL CLIENTE";
+            // 
+            // btnAtenderAC
+            // 
+            this.btnAtenderAC.Location = new System.Drawing.Point(104, 21);
+            this.btnAtenderAC.Name = "btnAtenderAC";
+            this.btnAtenderAC.Size = new System.Drawing.Size(79, 48);
+            this.btnAtenderAC.TabIndex = 10;
+            this.btnAtenderAC.Text = "Atender";
+            this.btnAtenderAC.UseVisualStyleBackColor = true;
+            this.btnAtenderAC.Click += new System.EventHandler(this.btnAtenderAC_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::sistmBancoEd.Properties.Resources.logoBanco;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(30, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(252, 189);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.txtDniAtencion);
+            this.groupBox5.Controls.Add(this.label6);
+            this.groupBox5.Controls.Add(this.txtClienteAtencion);
+            this.groupBox5.Location = new System.Drawing.Point(26, 265);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(251, 70);
+            this.groupBox5.TabIndex = 11;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Atendiendo";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Cliente";
+            // 
+            // txtDniAtencion
+            // 
+            this.txtDniAtencion.Location = new System.Drawing.Point(134, 37);
+            this.txtDniAtencion.Name = "txtDniAtencion";
+            this.txtDniAtencion.Size = new System.Drawing.Size(90, 20);
+            this.txtDniAtencion.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(142, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Dni";
+            // 
+            // txtClienteAtencion
+            // 
+            this.txtClienteAtencion.Location = new System.Drawing.Point(6, 37);
+            this.txtClienteAtencion.Name = "txtClienteAtencion";
+            this.txtClienteAtencion.Size = new System.Drawing.Size(90, 20);
+            this.txtClienteAtencion.TabIndex = 10;
+            // 
             // frmMesaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 569);
+            this.ClientSize = new System.Drawing.Size(1030, 569);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.CAJAS);
@@ -475,11 +509,12 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.CAJAS.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -494,10 +529,8 @@
         private System.Windows.Forms.DataGridView dgvCajas;
         private System.Windows.Forms.DataGridView dgvAtencionCliente;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtClienteAtencionCl;
         private System.Windows.Forms.TextBox txtClienteCajas;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.TextBox txtNombreEntrada;
@@ -524,5 +557,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNombreCaja;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtDniAtencion;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtClienteAtencion;
     }
 }

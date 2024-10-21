@@ -15,12 +15,14 @@ namespace sistemaHospital
     {
         private clsCola cola;
         private clsListaCja listaParaCajas;
+        private clsAtencionCl listaAtencion;
 
         public frmMesaEntrada()
         {
             InitializeComponent();
             cola = new clsCola();
             listaParaCajas = new clsListaCja();
+            listaAtencion = new clsAtencionCl();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -29,10 +31,10 @@ namespace sistemaHospital
             {
                 if (int.TryParse(txtDniEntrada.Text, out int dni))
                 {
-                    // Creamos el nuevo nodo con el DNI ingresado
+                    
                     Nodo nuevoNodo = new Nodo(dni, txtNombreEntrada.Text);
 
-                    // Intentamos agregar el nodo a la cola
+                    
                     bool agregado = cola.Agregar(nuevoNodo);
 
                     if (agregado)
@@ -70,13 +72,13 @@ namespace sistemaHospital
             dgvIngreso.Columns.Add("Orden", "Orden" );
             dgvIngreso.Columns.Add("DNI", "DNI");
             dgvIngreso.Columns.Add("Nombre", "Nombre");
-            // Obtenemos los nodos de la cola
+            
             List<Nodo> listaDeNodos = cola.ListarElementos();
 
-            // Variable para llevar el conteo del orden
+            
             int orden = 1;
 
-            // Iteramos sobre cada nodo en la lista
+            
             foreach (var nodo in listaDeNodos)
             {
                 if (nodo != null)
@@ -87,7 +89,7 @@ namespace sistemaHospital
 
                     dgvIngreso.Rows.Add(orden, dniString, nombre);
 
-                    // Incrementamos el contador de orden
+                    
                     orden++;
                 }
                 else
@@ -100,22 +102,22 @@ namespace sistemaHospital
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            // Llama al método Eliminar y guarda el nodo eliminado
+            
             Nodo nodoEliminado = cola.Eliminar();
 
             // Verifica si se eliminó un nodo
             if (nodoEliminado != null)
             {
 
-                // Establece el texto de txtIngreso con el DNI del nodo eliminado
-                txtDniClientes.Text = nodoEliminado.DNI.ToString(); // Convertimos a string
+                
+                txtDniClientes.Text = nodoEliminado.DNI.ToString(); 
 
-                txtNombreClientes.Text = nodoEliminado.Nombre.ToString(); // Convertimos a string
+                txtNombreClientes.Text = nodoEliminado.Nombre.ToString(); 
                 CargarDgvEntrada();
             }
             else
             {
-                // Opcional: Manejar el caso cuando no hay nodos para eliminar
+               
                 MessageBox.Show("No hay mas datos en la cola");
             }
         }
@@ -124,8 +126,8 @@ namespace sistemaHospital
         {
             if (string.IsNullOrWhiteSpace(txtDniClientes.Text))
             {
-                MessageBox.Show("Debe haber un DNI."); // Mensaje de error si el TextBox está vacío
-                return; // Salimos del método
+                MessageBox.Show("Debe haber un DNI."); 
+                return; 
             }
 
 
@@ -133,54 +135,96 @@ namespace sistemaHospital
             {
                 NodoLista nuevoNodo = new NodoLista(dni,txtNombreClientes.Text)
                 {
-                    Cliente = chkCliente.Checked // Asignamos true o false según el CheckBox
+                    Cliente = chkCliente.Checked 
                 };
                 
-                // Verificamos si el RadioButton btnCaja está seleccionado
+                
                 if (rdCajas.Checked)
                 {
                         //clsListaCja listaParaCaja = new clsListaCja();
                     
                     listaParaCajas.Insertar(nuevoNodo);
 
-                    // Cargamos los datos en el DataGridView de Caja
+                    
                     CargarGrillaCaja();
 
-                    // Limpiamos los controles
+                    
                     txtDniClientes.Clear();
                     txtNombreClientes.Clear() ;
                     rdAtencionClientes.Checked = false;
-                    rdCajas.Checked = false; // Desmarcamos el RadioButton
+                    rdCajas.Checked = false; 
+                }
+                if (rdAtencionClientes.Checked)
+                {
+                    
+                    
+
+                    listaAtencion.Insertar(nuevoNodo);
+
+                    GrillaAtencionCLiente();
+
+                    
+                    txtDniClientes.Clear();
+                    txtNombreClientes.Clear();
+                    rdAtencionClientes.Checked = false;
+                    rdCajas.Checked = false; 
                 }
                 chkCliente.Checked = false;
             }
 
 
         }
+
+
+        // Configuramos las columnas del DataGridView
+        private void ConfigurarColumnas()
+        {
+            dgvCajas.Columns.Add("Orden", "Orden");
+            dgvCajas.Columns.Add("DNI", "DNI");
+            dgvCajas.Columns.Add("Nombre", "Nombre");
+            dgvCajas.Columns.Add("Cliente", "Cliente");
+        }
+
+
+
         private void CargarGrillaCaja()
         {
-            // Limpiamos el DataGridView antes de listar los elementos
+        
             dgvCajas.Rows.Clear();
-
-            // Configuramos las columnas del DataGridView si no están configuradas
+            
             if (dgvCajas.Columns.Count == 0)
             {
-                dgvCajas.Columns.Add("Orden", "Orden");
-               
-                dgvCajas.Columns.Add("DNI", "DNI");
-                dgvCajas.Columns.Add("Nombre", "Nombre");
-
-                dgvCajas.Columns.Add("Cliente", "Cliente");
+                ConfigurarColumnas();
             }
-            
-            // Listamos todos los nodos y los cargamos en el DataGridView
             var nodos = listaParaCajas.Listar();
+
+            
+            int orden = 1; 
+            foreach (var nodo in nodos)
+            {
+                dgvCajas.Rows.Add(orden++, nodo.DNI, nodo.Nombre, nodo.Cliente ? "Sí" : "No"); 
+            }
+        }
+
+        private void GrillaAtencionCLiente()
+        {
+            
+            dgvAtencionCliente.Rows.Clear();
+
+            
+            if (dgvAtencionCliente.Columns.Count == 0)
+            {
+                ConfigurarColumnas();
+            }
+
+            // Listamos todos los nodos y los cargamos en el DataGridView
+            var nodos = listaAtencion.Listar();
 
             // Cargamos los datos en el DataGridView
             int orden = 1; // Variable para llevar el orden de los nodos
             foreach (var nodo in nodos)
             {
-                dgvCajas.Rows.Add(orden++, nodo.DNI, nodo.Nombre, nodo.Cliente ? "Sí" : "No"); // Agregamos fila con el orden, DNI y "Sí"/"No" para el cliente
+                dgvAtencionCliente.Rows.Add(orden++, nodo.DNI, nodo.Nombre, nodo.Cliente ? "Sí" : "No"); 
             }
         }
         private bool primerInicioCaja = true;
@@ -190,33 +234,63 @@ namespace sistemaHospital
 
             if (primerInicioCaja)
             {
-                // En el primer clic, atendemos al primer nodo de la lista caja
-                nodoAtendido = listaParaCajas.Atender(); // Suponiendo que Atender obtiene el primer nodo
-                primerInicioCaja = false; // Cambiamos el estado a no primer clic
+                nodoAtendido = listaParaCajas.Atender();
+                primerInicioCaja = false;
             }
             else
             {
-                // En clics subsecuentes, buscamos en los primeros 3
-                nodoAtendido = listaParaCajas.BuscarCliente(); // Método que deberías tener en tu clase ListaCaja
-                primerInicioCaja = true; // Restablecemos el estado para el siguiente clic
+                nodoAtendido = listaParaCajas.BuscarCliente();
+                primerInicioCaja = true;
+            }
+
+            if (nodoAtendido != null)
+            {
+                txtClienteCajas.Text = nodoAtendido.DNI.ToString(); txtNombreCaja.Text = nodoAtendido.Nombre;
+                CargarGrillaCaja();
+            }
+            else
+            {
+                MessageBox.Show("No hay más personas para atender.");
+                txtClienteCajas.Clear(); txtNombreCaja.Clear();
+            }
+        }
+
+
+        private bool primerInicioPersonal = true; // Variable para controlar si es el primer clic de personal
+
+        private void btnAtenderAC_Click(object sender, EventArgs e)
+        {
+            NodoLista nodoAtendido;
+
+            if (primerInicioPersonal)
+            {
+                // En el primer clic, atendemos al primer nodo de la lista personal
+                nodoAtendido = listaAtencion.Atender();
+                primerInicioPersonal = false; // Cambiamos el estado a no primer clic
+            }
+            else
+            {
+                // En clics subsecuentes, buscamos un nodo con Cliente
+                nodoAtendido = listaAtencion.BuscarCliente();
+                primerInicioPersonal = true;
             }
 
             // Verificamos si se obtuvo un nodo atendido
             if (nodoAtendido != null)
             {
                 // Cargamos el DNI en el TextBox
-                txtClienteCajas.Text = nodoAtendido.DNI.ToString(); // Convertimos el DNI a string y lo asignamos al TextBox
-                txtNombreCaja.Text = nodoAtendido.Nombre; // Convertimos el DNI a string y lo asignamos al TextBox
+                txtDniAtencion.Text = nodoAtendido.DNI.ToString(); // Convertimos el DNI a string y lo asignamos al TextBox
+                txtClienteAtencion.Text = nodoAtendido.Nombre.ToString(); // Convertimos el DNI a string y lo asignamos al TextBox
 
-                // Refrescamos la grilla dataGridCaja
-                CargarGrillaCaja(); // Este método debería implementar la lógica para cargar los datos en el DataGridView
+                // Refrescamos la grilla dataGridPersonal
+                GrillaAtencionCLiente(); // Este método debería implementar la lógica para cargar los datos en el DataGridView
             }
             else
             {
-                MessageBox.Show("No hay más personas para atender."); // Mensaje si no hay más personas
+                MessageBox.Show("No hay mas personas para atender."); // Mensaje si no hay más personas
                 txtClienteCajas.Clear();
                 txtNombreCaja.Clear();
-            }   
+            }
         }
     }
 }
