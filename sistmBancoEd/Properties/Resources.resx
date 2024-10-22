@@ -118,7 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="285641_id_user_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\285641_id_user_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="285641_id_user_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\285641_id_user_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icoAgregr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icoAgregr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgUsuarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgUsuarios.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icoSalir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icoSalir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logoBanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logoBanco.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icoBuscar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icoBuscar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

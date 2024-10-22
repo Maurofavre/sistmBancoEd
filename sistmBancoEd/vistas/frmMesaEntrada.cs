@@ -211,10 +211,13 @@ namespace sistemaHospital
             
             dgvAtencionCliente.Rows.Clear();
 
-            
+
             if (dgvAtencionCliente.Columns.Count == 0)
             {
-                ConfigurarColumnas();
+                dgvAtencionCliente.Columns.Add("Orden", "Orden");
+                dgvAtencionCliente.Columns.Add("DNI", "DNI");
+                dgvAtencionCliente.Columns.Add("Nombre", "Nombre");
+                dgvAtencionCliente.Columns.Add("Cliente", "Cliente");
             }
 
             // Listamos todos los nodos y los cargamos en el DataGridView
@@ -288,9 +291,14 @@ namespace sistemaHospital
             else
             {
                 MessageBox.Show("No hay mas personas para atender."); // Mensaje si no hay más personas
-                txtClienteCajas.Clear();
-                txtNombreCaja.Clear();
+                txtClienteAtencion.Clear();
+                txtDniAtencion.Clear();
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

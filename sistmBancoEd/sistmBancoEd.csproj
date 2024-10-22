@@ -94,5 +94,23 @@
   <ItemGroup>
     <None Include="Resources\logoBanco.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgUsuarios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icoSalir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\285641_id_user_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icoAgregr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\285641_id_user_icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icoBuscar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
