@@ -233,6 +233,11 @@ namespace sistemaHospital
         private bool primerInicioCaja = true;
         private void btnAtender_Click(object sender, EventArgs e)
         {
+            timerCajaCliente.Start();
+            atenderCaja();
+        }
+        private void atenderCaja()
+        {
             NodoLista nodoAtendido;
 
             if (primerInicioCaja)
@@ -248,13 +253,57 @@ namespace sistemaHospital
 
             if (nodoAtendido != null)
             {
-                txtClienteCajas.Text = nodoAtendido.DNI.ToString(); txtNombreCaja.Text = nodoAtendido.Nombre;
+                txtClienteCajas.Text = nodoAtendido.DNI.ToString();
+                txtNombreCaja.Text = nodoAtendido.Nombre;
                 CargarGrillaCaja();
             }
             else
             {
                 MessageBox.Show("No hay más personas para atender.");
-                txtClienteCajas.Clear(); txtNombreCaja.Clear();
+                txtClienteCajas.Clear();
+                txtNombreCaja.Clear();
+                timerCajaCliente.Stop(); 
+            }
+        }
+
+        private void atenderAtencion()
+        {
+            NodoLista nodoAtendido;
+
+            if (primerInicioPersonal)
+            {
+                nodoAtendido = listaAtencion.Atender();
+                primerInicioPersonal = false;
+            }
+            else
+            {
+                nodoAtendido = listaAtencion.BuscarCliente();
+                primerInicioPersonal = true;
+            }
+
+            if (nodoAtendido != null)
+            {
+                txtDniAtencion.Text = nodoAtendido.DNI.ToString();
+                txtClienteAtencion.Text = nodoAtendido.Nombre.ToString();
+                GrillaAtencionCLiente();
+
+                // Iniciar el timer solo si no está en ejecución
+                if (!timerClientesAtencion.Enabled)
+                {
+                    timerClientesAtencion.Start();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Fin de Turnos");
+                txtClienteAtencion.Clear();
+                txtDniAtencion.Clear();
+
+                // Detener el timer si no hay más personas
+                if (timerClientesAtencion.Enabled)
+                {
+                    timerClientesAtencion.Stop();
+                }
             }
         }
 
@@ -263,42 +312,33 @@ namespace sistemaHospital
 
         private void btnAtenderAC_Click(object sender, EventArgs e)
         {
-            NodoLista nodoAtendido;
+            timerClientesAtencion.Start();
 
-            if (primerInicioPersonal)
-            {
-                // En el primer clic, atendemos al primer nodo de la lista personal
-                nodoAtendido = listaAtencion.Atender();
-                primerInicioPersonal = false; // Cambiamos el estado a no primer clic
-            }
-            else
-            {
-                // En clics subsecuentes, buscamos un nodo con Cliente
-                nodoAtendido = listaAtencion.BuscarCliente();
-                primerInicioPersonal = true;
-            }
+            atenderAtencion();
 
-            // Verificamos si se obtuvo un nodo atendido
-            if (nodoAtendido != null)
-            {
-                // Cargamos el DNI en el TextBox
-                txtDniAtencion.Text = nodoAtendido.DNI.ToString(); // Convertimos el DNI a string y lo asignamos al TextBox
-                txtClienteAtencion.Text = nodoAtendido.Nombre.ToString(); // Convertimos el DNI a string y lo asignamos al TextBox
 
-                // Refrescamos la grilla dataGridPersonal
-                GrillaAtencionCLiente(); // Este método debería implementar la lógica para cargar los datos en el DataGridView
-            }
-            else
-            {
-                MessageBox.Show("No hay mas personas para atender."); // Mensaje si no hay más personas
-                txtClienteAtencion.Clear();
-                txtDniAtencion.Clear();
-            }
+
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void frmMesaEntrada_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void timerAtencionCliente_Tick(object sender, EventArgs e)
+        {
+            atenderCaja();
+        }
+
+        private void timerClientesAtencion_Tick(object sender, EventArgs e)
+        {
+            atenderAtencion();
         }
     }
 }
